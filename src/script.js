@@ -478,8 +478,8 @@ loaderG.load( 'scene.gltf', async function ( gltf ) {
 
   const model = gltf.scene;
   arcade = model;
-  arcade.scale.set(0.02,0.02,0.02);
-  arcade.position.set(-0.4,-1,1);
+  arcade.scale.set(0.01,0.01,0.01);
+  arcade.position.set(-0.4,0.2,1);
   //arcade.rotation.y = Math.PI * 0.3;
   //arcade.rotation.x = Math.PI * 0.5;
 
