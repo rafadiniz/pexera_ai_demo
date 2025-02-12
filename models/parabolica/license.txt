@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rusty House Satellite Dish
+* source:	https://sketchfab.com/3d-models/rusty-house-satellite-dish-929f056abe02416da19d7b1aa805d235
+* author:	TomasKiniulis (https://sketchfab.com/TomasKiniulis)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rusty House Satellite Dish" (https://sketchfab.com/3d-models/rusty-house-satellite-dish-929f056abe02416da19d7b1aa805d235) by TomasKiniulis (https://sketchfab.com/TomasKiniulis) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

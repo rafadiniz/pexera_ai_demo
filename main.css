@@ -158,15 +158,15 @@ a, button, input, select {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	background: rgb(156, 233, 242);
+	background: transparent;
 }
 
 #overlay button {
 	background: transparent;
 	border: 0;
-	border: 1px solid rgba(182, 8, 195, 0.3);
+	border: 1px solid rgba(13, 13, 14, 0.3);
 	border-radius: 10px;
-	color: #ed0bd6;
+	color: #ed0b0b;
 	padding: 12px 18px;
 	text-transform: uppercase;
 	cursor: pointer;
