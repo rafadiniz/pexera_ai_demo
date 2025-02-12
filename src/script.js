@@ -23,14 +23,13 @@ import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass.js';
 import { BleachBypassShader } from 'three/examples/jsm/shaders/BleachBypassShader.js';
 import { CSS3DRenderer, CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer.js";
 // import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
-
 // import { log } from 'three/src/nodes/TSL.js';
 // import {textG} from './textG.js';
 
 let camera, controls, scene, renderer, composer;
 let textMov = new THREE.Mesh;
 let arcade = new THREE.LineSegments;
-let arcadeMov = false;
+let arcadeMov = true;
 let textGameOver = new THREE.LineSegments;
 let textProjetos = new THREE.LineSegments;
 let textContato = new THREE.LineSegments;
@@ -269,7 +268,7 @@ videoProjeto1.visible = false;
 const loaderH = new THREE.FileLoader();
 let cssProjeto1;
 loaderH.load(
-  'pag/video.html', // Replace with the path to your HTML file
+  'projetos/projetos1.html', // Replace with the path to your HTML file
   function (data) {
     // Create a container for the loaded HTML
     const div = document.createElement('div');
@@ -282,7 +281,7 @@ loaderH.load(
 
     // Create a CSS3DObject and add it to the scene
     const cssObject = new CSS3DObject(div);
-    cssObject.position.set(-9, 0, 25);
+    cssObject.position.set(-9, 1.5, 25);
     cssObject.scale.set(0.005, 0.005, 0.005); // Adjust scale as needed
     cssObject.rotateY(Math.PI * 0.9);
     cssObject.visible = false;
@@ -1041,7 +1040,7 @@ function interact(){
   //const clickedObject = intersects[0].arcade;
   //console.log('Clicked on:', clickedObject);
   //arcade.material.color.set('rgb(255, 67, 5)');
-  arcadeMov = true;
+  arcadeMov = false;
   arcade.traverse((child) => {
     if (child.isMesh) {
         child.material.color.set(Math.random() * 0xffffff); // Change color to Red
@@ -1053,7 +1052,7 @@ function interact(){
   
   }else{
   //arcade.material.color.set('rgb(8, 8, 8)');
-  arcadeMov = false;
+  arcadeMov = true;
   arcade.traverse((child) => {
     if (child.isMesh) {
         child.material.color.set('rgb(244, 242, 241)'); // Change color to Red
@@ -1166,23 +1165,6 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
 
       //planeScreen.visible = false;
     }
-    if (intersectsSkull.length > 0) {
-      //introAnimation();
-      //document.body.appendChild(canvas);
-   
-      //sections.appendChild(iframe);
-      //document.body.appendChild(iframe);
-      //arcadeChange();
-      //textMov.material.color.set('rgb(245, 245, 245)');
-      //sections.style.display = 'block';
-      //sections.style.color ='rgb(255,255,255)';
-      //scene.background = new THREE.Color('rgb(9, 9, 9)');
-
-    }else{
-      //sections.style.display = 'none';
-      //iframe.remove();
-      //scene.background = new THREE.Color('rgb(242, 199, 156)');
-    }
 
     if (intersectsLinks.length > 0 && planeScreen.visible == true) {
       //window.open('https://vimeo.com/rafadiniz', '_blank');
@@ -1193,7 +1175,7 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
      
     }
 
-    if (intersectsProjeto1.length > 0) {
+    if (intersectsProjeto1.length > 0 && intersectsArcade.length == 0) {
    
       //iframe.style.display = 'block';
       label.visible = true;
@@ -1229,41 +1211,16 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
 }
 
 
-// let isDragging = false;
-// let previousTouchX = 0;
-// let previousTouchY = 0;
-
-// document.addEventListener("touchstart", (event) => {
-//   if (event.touches.length === 1) {
-//     isDragging = true;
-//     previousTouchX = event.touches[0].clientX;
-//     previousTouchY = event.touches[0].clientY;
-//   }
-// });
-
-// document.addEventListener("touchmove", (event) => {
-//   if (isDragging && event.touches.length === 1) {
-//     const deltaX = event.touches[0].clientX - previousTouchX;
-//     const deltaY = event.touches[0].clientY - previousTouchY;
-
-//     camera.position.x -= deltaX * 0.05; // Adjust sensitivity
-//     camera.position.y -= deltaY * 0.05;
-
-//     previousTouchX = event.touches[0].clientX;
-//     previousTouchY = event.touches[0].clientY;
-//   }
-// });
-
 
 //// DEFINE ORBIT CONTROLS LIMITS
 function setOrbitControlsLimits(){
-    controls.enableDamping = true;
+    controls.enableDamping = false;
     controls.dampingFactor = 0.04;
     controls.minDistance = 4;
     controls.maxDistance = 13;
     controls.enablePan = true;
     controls.enableRotate = false;
-    controls.enableZoom = true;
+    controls.enableZoom = false;
     //controls.maxPolarAngle = Math.PI /2;
 	
 }
@@ -1312,15 +1269,7 @@ function renderLoop() {
     camera.position.x = THREE.MathUtils.clamp(camera.position.x, -20, 20);
     camera.position.y = THREE.MathUtils.clamp(camera.position.y, -20, 20);
     camera.position.z = THREE.MathUtils.clamp(camera.position.z, -20, 20);
-    //updateCanvasTexture()
-
-    // // Rotate the cube in the render-to-texture scene
-    // cube.rotation.x += 0.01;
-    // cube.rotation.y += 0.01;
   
-
-	  //textMov.rotation.y += 0.01;
-    
     
     cactusLS.rotation.y += 0.004;
     //arcade.rotation.y += 0.01;
@@ -1416,8 +1365,8 @@ function moveHandle(clientX, clientY) {
     const normalizedDeltaY = deltaY / maxDistance;
 
     // Move the camera based on the joystick input
-    camera.position.x += normalizedDeltaX * - 0.15;
-    camera.position.y -= normalizedDeltaY * 0.15; // Invert Y axis for natural movement
+    camera.position.x -= normalizedDeltaX *   0.2;
+    camera.position.y -= normalizedDeltaY *   0.2; // Invert Y axis for natural movement
 
 // Ouça o evento popstate para detectar quando o usuário utiliza o botão "Voltar" ou "Avançar"
 window.addEventListener('popstate', (event) => {
@@ -1458,7 +1407,7 @@ document.addEventListener("mousemove", (event) => {
         let deltaY = (event.clientY - prevMouseY) * panSpeed;
 
         camera.position.x -= deltaX; // Move Left/Right
-        camera.position.y += deltaY * -1; // Move Up/Down
+        camera.position.y -= deltaY; // Move Up/Down
 
         prevMouseX = event.clientX;
         prevMouseY = event.clientY;

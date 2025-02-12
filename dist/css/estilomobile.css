@@ -1,0 +1,212 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  background: rgb(245,245,245);
+  overflow-y:hidden;
+  overflow-x:hidden;
+}
+a:link, a:visited{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  text-decoration: underline;
+}
+.siten:hover{
+  text-decoration: none;
+}
+.header h1{
+  letter-spacing: 2px;
+  font-size: 16px;
+}
+h2{
+  letter-spacing: 2px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+header .menu{
+  background: rgb(236,236,236);
+}
+.menu{
+  list-style: none;
+  padding-left: 0px;
+}
+.menu li{
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+.dropbtn {
+  background-color: rgb(236,236,236);
+  color: black;
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+}
+.dropbtn:hover, .dropbtn:focus {
+  text-decoration: underline;
+  background-color: rgb(245,245,245);
+  font-size: 13px;
+}
+.dropdown {
+  position:static;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(245,245,245);
+  min-width: 140px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  font-size: 10px;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  letter-spacing: 2px;
+  display: block;
+}
+.dropdown a:hover {background-color: #ddd}
+.show {display:block;}
+
+ul.menu:last-child{
+  margin-right: 0px;
+}
+section h2{
+  font-size: 20px;
+}
+section p{
+  font-size: 15px;
+  font-weight:normal;
+  text-align: justify;
+}
+section img{
+  margin-top: 12px;
+  width: 400px;
+}
+.footer_i{
+  margin-top: 90px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  height: 45px;
+  text-decoration: none;
+}
+.footer{
+  margin-top: 50px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  height: 45px;
+}
+.footer2{
+  margin-top: 30px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  height: 45px;
+}
+.footer_i .icons i{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.footer .icons i{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.footer_i .icons:hover{
+  text-decoration: none;
+}
+.footer .icons:hover{
+  text-decoration: none;
+}
+/* video */
+.video{
+  font-size: 16px;
+}
+.video .section iframe{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 450px;
+  height: 250px;
+  background: black;
+  }
+.headertr .col12{
+  background: rgb(245, 245, 245);
+}
+.video_primeiro{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.video{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.video_ultimo{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.section a{
+  font-size: 20px;
+}
+/* musica */
+.musica .section{
+  font-size: 16px;
+}
+.mus1{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.mus2{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.mus3{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.mus4{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+/* biografia */
+.bio p{
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-align: justify;
+  line-height: 40px;
+  margin-top: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+/* contato */
+.cont p{
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-align: justify;
+  line-height: 40px;
+  margin-top: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.cont address p a{
+  font-size: 20px;
+}
+.cont address:hover{
+  text-decoration: none;
+}
+.email p{
+  margin-top: 5px;
+}
+.tel p{
+  margin-top: 5px;
+}
