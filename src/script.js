@@ -64,7 +64,7 @@ document.body.appendChild(container);
 
 ///// SCENE CREATION
 scene = new THREE.Scene();
-scene.background = new THREE.Color('rgb(10, 154, 244)');
+scene.background = new THREE.Color('rgb(72, 74, 75)');
 //scene.fog = new THREE.FogExp2('rgb(247, 11, 212)',0.04);
 
 ///// RENDERER CONFIG
@@ -101,8 +101,8 @@ composer.addPass( new RenderPass( scene, camera ) );
 
 const filmPass = new FilmPass(
   2.85, // noise intensity
-  0.8,  // scanline intensity
-  8,  // scanline count
+  0.0,  // scanline intensity
+  0,  // scanline count
   false // false to keep colors
 );
 
@@ -121,7 +121,7 @@ composer.addPass(effectBleach);
 const effect2 = new ShaderPass( RGBShiftShader );
 effect2.uniforms[ 'amount' ].value = 0.0050;
 effect2.uniforms[ 'angle' ].value = 90;
-composer.addPass( effect2 );
+//composer.addPass( effect2 );
 
 ///// MAKE EXPERIENCE FULL SCREEN
 window.addEventListener('resize', () => {
@@ -166,10 +166,12 @@ const grid1 = new THREE.GridHelper( 200, 20, 0x444444, 0x444444 );
 grid1.rotation.z = Math.PI * 0.5;
 //scene.add(grid1 );
 
-const grid2 = new THREE.GridHelper( 200, 20, 'rgb(154, 152, 152)','rgb(121, 118, 118)' );
+const gMaterial = new THREE.LineBasicMaterial({ color: 'rgb(239, 234, 234)', transparent: true, opacity: 0.2});
+
+const grid2 = new THREE.GridHelper( 200, 20, gMaterial);
 scene.add( grid2 );
 
-const grid3 = new THREE.GridHelper( 400, 30, 'rgb(135, 131, 131)','rgb(134, 129, 129)' );
+const grid3 = new THREE.GridHelper( 400, 30, gMaterial );
 grid3.position.set(0,0,40)
 grid3.rotation.x = Math.PI * 0.5;
 scene.add(grid3);
@@ -267,6 +269,8 @@ videoProjeto1.visible = false;
 
 const loaderH = new THREE.FileLoader();
 let cssProjeto1;
+let divProjetos1;
+
 loaderH.load(
   'projetos/projetos1.html', // Replace with the path to your HTML file
   function (data) {
@@ -274,10 +278,11 @@ loaderH.load(
     const div = document.createElement('div');
     div.innerHTML = data;
     div.style.position = 'absolute';
-    div.style.color = 'rgb(19, 18, 18)';
+    div.style.color = 'rgb(243, 12, 12)';
     div.style.fontSize = '40px';
-    div.style.backgroundColor = 'rgba(12, 207, 241, 0.8)';
+    div.style.backgroundColor = 'rgba(12, 12, 12, 0.8)';
     div.style.padding = '10px';
+    divProjetos1 = div;
 
     // Create a CSS3DObject and add it to the scene
     const cssObject = new CSS3DObject(div);
@@ -357,9 +362,9 @@ let wireProjetos = [];
 function wireGreen(x, y){
 
   // Create an EdgesGeometry from the plane geometry
-  const geometrySec = new THREE.PlaneGeometry( 2.5, 2.5);
+  const geometrySec = new THREE.PlaneGeometry( 2.6, 2.6);
   const edgesGeometry = new THREE.EdgesGeometry(geometrySec);
-  const lineMaterial = new THREE.LineBasicMaterial( {color:'rgb(0,255,0)' });
+  const lineMaterial = new THREE.LineBasicMaterial( {color:'rgb(254, 7, 7)' });
   const wireframe = new THREE.LineSegments(edgesGeometry, lineMaterial);
   wireframe.position.set(x, y, 30);
   wireframe.rotateY(Math.PI * 0.9);
@@ -372,25 +377,6 @@ function wireGreen(x, y){
 }
 
 
- // Diretores
- const geometryS = new THREE.PlaneGeometry( 12, 6);
- const edgesGeometry = new THREE.EdgesGeometry(geometryS);
- const lineMaterial = new THREE.LineBasicMaterial( {color:'rgb(0,255,0)' });
- const wireframe = new THREE.LineSegments(edgesGeometry, lineMaterial);
- wireframe.position.set(-10, -7, 30);
- wireframe.rotateY(Math.PI * 0.9);
- //scene.add(wireframe);
-
-
- // contato
- const geometryC = new THREE.PlaneGeometry( 6, 8);
- const edgesGeometryC = new THREE.EdgesGeometry(geometryC);
- const lineMaterialC = new THREE.LineBasicMaterial( {color:'rgb(0,255,0)' });
- const wireframeC = new THREE.LineSegments(edgesGeometryC, lineMaterialC);
- wireframeC.position.set(0, 0, 30);
- wireframeC.rotateY(Math.PI * 0.9);
- //scene.add(wireframeC);
-
 
 // Function to create a text mesh
 let textMeshes = [];
@@ -401,7 +387,7 @@ function createTextMesh(text, font, x, y) {
     height: 0, // No extrusion
   });
 
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const material = new THREE.MeshBasicMaterial({ color: 'rgb(255, 9, 9)' });
   const mesh = new THREE.Mesh(geometry, material);
   mesh.visible = false;
   mesh.position.set(x,y,30);
@@ -455,41 +441,6 @@ secProjetos.forEach((mesh) => {
 wireProjetos.forEach((mesh) => {
   mesh.visible = false;
 });
-    
-// textDisplay('projeto1',-8.5,4);
-// planeImage3D('img/t.png',-10,4);
-  
-// textDisplay('projeto2',-8.5,1)
-// planeImage3D('img/t2.png',-10,1);
-
-// textDisplay('projeto3',-8.5,-2)
-// planeImage3D('img/t3.png',-10,-2);
-
-
-// textDisplay('projeto4',-12,4)
-// planeImage3D('img/t.png',-13.5,4);
-  
-// textDisplay('projeto5',-12,1)
-// planeImage3D('img/t2.png',-13.5,1);
-
-// textDisplay('projeto6',-12,-2)
-// planeImage3D('img/t3.png',-13.5,-2);
-
-// secProjetos.addEventListener( 'click', displaySecProjetos);
-// secProjetos.addEventListener( 'click', projetosSel);
-
-// secDiretores.addEventListener( 'click', imgProjetos);
-// if(iimg){
-//   iimg.remove();
-// }
-// secDiretores.addEventListener( 'click', diretoresSel);
-
-// secContato.addEventListener( 'click', iframeProjetos);
-// secContato.addEventListener( 'click', contatoSel);
-
-// // Create a CanvasTexture from the canvas
-// const linkTexture = new THREE.CanvasTexture(canvas);
-// let linkmaterial = new THREE.MeshBasicMaterial({ map: linkTexture });
 
 
 // Load a font and create TextGeometry
@@ -522,14 +473,14 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
 });
 
 let tvColor;
-const loaderG = new GLTFLoader().setPath( 'models/tv1/' );
+const loaderG = new GLTFLoader().setPath( 'models/parabolica/' );
 loaderG.load( 'scene.gltf', async function ( gltf ) {
 
   const model = gltf.scene;
   arcade = model;
-  arcade.scale.set(1.5,1.5,1.5);
-  arcade.position.set(-0.4,0.5,1);
-  arcade.rotation.y = Math.PI * 0.3;
+  arcade.scale.set(0.02,0.02,0.02);
+  arcade.position.set(-0.4,-1,1);
+  //arcade.rotation.y = Math.PI * 0.3;
   //arcade.rotation.x = Math.PI * 0.5;
 
   // model.traverse((child) => {
@@ -544,53 +495,6 @@ loaderG.load( 'scene.gltf', async function ( gltf ) {
 
 
 } );
-  ///// loading arcade fbx model
-  // const loader = new GLTFLoader();
-  // loader.load( 'models/tv1/scene.gltf',  function (object) {
-  //     object.traverse(function (child) {
-  //       if (child.isMesh) {
-  //          // Add mesh to clickable objects
-  //         const wireframe = new THREE.WireframeGeometry(child.geometry);
-  //         const lineMaterial = new THREE.LineBasicMaterial({
-  //       color: 'rgb(31, 248, 11)', // Set the color (e.g., red)
-  //       depthTest: true, // Ensures wireframe is always visible
-  //       opacity: 0.6, // Adjust transparency
-  //       transparent: true,
-  //       });
-  //     const line = new THREE.LineSegments(wireframe,lineMaterial);
-  //     wireframe.scale(2,2,2);
-  //     //skeleton = child.skeleton;
-  //     line.position.set(-0.6,0.4,1);
-  //     line.rotation.y = Math.PI * 0.9;
-  //     //line.rotation.x = Math.PI * 0.5
-      
-  //     arcade = object;
-  //     arcade.scale.set(0.01,0.01,0.01);
-  //     arcade.position.set(-0.6,-2,1);
-  //     //arcade.rotation.y = Math.PI * 0.9;
-  //     //arcade.rotation.x = Math.PI * 0.5;
-  //     //arcade.castShadow = true;
-     
-  //     //console.log('Model loaded and clickable:', arcade);
-  //     //scene.add(line);
-  //     scene.add(arcade);
-
-    
-  //     clickableArcade.push(arcade);
-
-  //       }
-  //     });
-
-      
-  //   },
-  //   function (xhr) {
-  //     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-  //     //assetCount = xhr.loaded / xhr.total * 100;
-  //   },
-  //   function (error) {
-  //     console.error('An error occurred:', error);
-  //   }
-  // );
 
 
   loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
@@ -641,7 +545,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
       bevelSegments: 1,
   });
  
-  const textMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Red color
+  const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(24, 21, 83)' }); // Red color
   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
   textProjetos = textMesh;
   textProjetos.visible = false;
@@ -669,7 +573,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
     });
 
    
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Red color
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(24, 21, 83)'}); // Red color
     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       
     textDiretores = textMesh;
@@ -695,7 +599,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         bevelSize: 0.02,
         bevelSegments: 1,
     });
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Red color
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(24, 21, 83)' }); 
     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
     textContato = textMesh;
     textContato.visible = false;
@@ -708,59 +612,6 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
   });
 
   
-  let back;
-  loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
-    const textGeometry = new TextGeometry('<', {
-        font: font,
-        size: 0.4,
-        height: 0.0,
-        opacity: 0.2,
-        curveSegments: 2,
-        bevelEnabled: false,
-        bevelThickness: 0.01,
-        bevelSize: 0.02,
-        bevelSegments: 1,
-    });
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(0,200,0)' }); // Red color
-    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-    back = textMesh;
-    back.visible = false;
-  
-    // Position and add to scene
-    back.position.set(-5.3, 1, 20.0);
-    back.rotation.y = Math.PI * 0.9
-    scene.add(back);
-
-  });
-
-  let forward;
-  loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
-    const textGeometry = new TextGeometry('>', {
-        font: font,
-        size: 0.4,
-        height: 0.0,
-        opacity: 0.2,
-        curveSegments: 2,
-        bevelEnabled: false,
-        bevelThickness: 0.01,
-        bevelSize: 0.02,
-        bevelSegments: 1,
-    });
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(0,200,0)' }); // Red color
-    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-    forward = textMesh;
-    forward.visible = true;
-  
-    // Position and add to scene
-    forward.position.set(controls.object.position.x, controls.object.position.x, controls.object.position.z+20);
-    //forward.rotation.y = Math.PI * 0.9
-    //scene.add(forward);
-
-  });
-
-
 
   //// loading cactus model
   const loadCactus = new FBXLoader();
@@ -769,7 +620,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(242, 13, 238)', 
+        color: 'rgb(177, 173, 177)', 
         depthTest: true, // Ensures wireframe is always visible
         opacity: 0.2, // Adjust transparency
         transparent: true,
@@ -809,7 +660,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(253, 8, 237)', 
+        color: 'rgb(203, 199, 203)', 
         depthTest: true, // Ensures wireframe is always visible
         opacity: 0.2, // Adjust transparency
         transparent: true,
@@ -853,9 +704,9 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(104, 101, 101)', 
+        color: 'rgb(250, 241, 241)', 
         depthTest: true, // Ensures wireframe is always visible
-        opacity: 0.5, // Adjust transparency
+        opacity: 0.2, // Adjust transparency
         transparent: true,
         });
       const line = new THREE.LineSegments(wireframe,lineMaterial);
@@ -899,24 +750,24 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
     // document.body.appendChild(ascii.domElement);
     
     
-    renderLoop();
+   
     introAnimation();
     //document.body.appendChild(iframe);
   }
 
+
 // Define start and end colors
-const startColor = new THREE.Color('rgba(10, 154, 244, 0.9)'); // Red
+const startColor = new THREE.Color('rgb(72, 74, 75)'); // Red
 const endColor = new THREE.Color('rgb(11, 16, 59)');   // Blue
 const colorParams = {r: startColor.r, g: startColor.g, b: startColor.b };
 
 let arcadeTrans = false;
-let freeCamera = false;
+//let freeCamera = false;
 //// INTRO CAMERA ANIMATION USING TWEEN
 function introAnimation() {
     
     //sections.style.display = 'none';
     tvimg.style.opacity = 0.0;
-    freeCamera = false
     //scene.background = new THREE.Color('rgb(242, 199, 156)');
     controls.enabled = false; //disable orbit controls to animate the camera
     
@@ -976,7 +827,6 @@ new TWEEN.Tween(camera.position.set(camera.position.x,camera.position.y,camera.p
     skullLS.visible = true;
     cactusLS.visible = true;
     //secProjetos.visible = true;
-    freeCamera = true;
     textMeshes.forEach((mesh, index) => {
       mesh.visible = true;
     });
@@ -1127,7 +977,7 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
 }else{
   //document.body.style.cursor =  'default';
   secProjetos[0].material.color.set('rgb(255,0,0)');
-  textMeshes[0].material.color.set('rgb(255,0,0)');
+  textMeshes[0].material.color.set('rgb(247, 7, 7)');
 }
 
     
@@ -1180,7 +1030,9 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
       //iframe.style.display = 'block';
       label.visible = true;
       videoProjeto1.visible = true; 
+
       cssProjeto1.visible = true;
+  
 
       
       
@@ -1247,9 +1099,6 @@ let index = 0;
 function renderLoop() {
 
     TWEEN.update() // update animations
-    if(freeCamera){
-      //camera.position.set(mouse.x*-10, mouse.y*7, camera.position.z);
-    }    
  
     const delta = clock.getDelta();
     controls.update(delta);
@@ -1275,7 +1124,7 @@ function renderLoop() {
     //arcade.rotation.y += 0.01;
 
     if(arcadeMov){
-      arcade.rotation.y += 0.02;
+      arcade.rotation.y += 0.01;
     }else{
       //arcade.rotation.y = Math.PI * 0.7;
     }
@@ -1314,7 +1163,7 @@ function renderLoop() {
   requestAnimationFrame(renderLoop) //loop the render function
     
 }
-
+renderLoop();
 // Joystick logic
 const joystick = document.getElementById('joystick');
 document.body.appendChild(joystick);
