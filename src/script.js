@@ -1044,7 +1044,7 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
 
       cssProjeto1.visible = true;
       wireProjetos1.visible = true;
-      controls.object.position.x = -11;
+      controls.object.position.x = -9;
       
       // textMeshes.forEach((mesh) => {
       //   mesh.visible = false;
