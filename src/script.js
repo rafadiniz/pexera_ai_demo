@@ -270,7 +270,7 @@ videoProjeto1.visible = false;
 const loaderH = new THREE.FileLoader();
 let cssProjeto1;
 let divProjetos1;
-
+let wireProjetos1;
 loaderH.load(
   'projetos/projetos1.html', // Replace with the path to your HTML file
   function (data) {
@@ -280,20 +280,31 @@ loaderH.load(
     div.style.position = 'absolute';
     div.style.color = 'rgb(243, 12, 12)';
     div.style.fontSize = '40px';
-    div.style.backgroundColor = 'rgba(12, 12, 12, 0.8)';
+    div.style.backgroundColor = 'rgba(12, 12, 12, 0.3)';
     div.style.padding = '10px';
     divProjetos1 = div;
 
     // Create a CSS3DObject and add it to the scene
     const cssObject = new CSS3DObject(div);
-    cssObject.position.set(-9, 1.5, 25);
+    cssObject.position.set(-14, 1.5, 25);
     cssObject.scale.set(0.005, 0.005, 0.005); // Adjust scale as needed
     cssObject.rotateY(Math.PI * 0.9);
-    cssObject.visible = false;
+    cssObject.visible = true;
     scene.add(cssObject);
 
     cssProjeto1 = cssObject;
 
+    const geometrySec = new THREE.PlaneGeometry( 3.5, 6);
+    const edgesGeometry = new THREE.EdgesGeometry(geometrySec);
+    const lineMaterial = new THREE.LineBasicMaterial( {color:'rgb(254, 7, 7)' });
+    const wireframe = new THREE.LineSegments(edgesGeometry, lineMaterial);
+    wireframe.position.set(-14, 1.5, 25);
+    wireframe.rotateY(Math.PI * 0.9);
+    wireframe.visible = true;
+    //wireProjetos.push(wireframe);
+    scene.add(wireframe);
+     
+    wireProjetos1 = wireframe;
     //document.body.appendChild(div);
   },
   undefined,
@@ -409,9 +420,9 @@ loaderF.load('fonts/Jersey 15_Regular.json', function (font) {
   selProjetos.push(img1);
   const wf1 = wireGreen(-10,4);
   
-  const text2 = createTextMesh('projeto2', font,-8.5,1);
-  const img2 = planeImage3D('img/t2.png',-10,1);
-  const wf2 = wireGreen(-10,1);
+  const text2 = createTextMesh('projeto2', font,-9.5,1);
+  const img2 = planeImage3D('img/t2.png',-11,1);
+  const wf2 = wireGreen(-11,1);
   
   const text3 = createTextMesh('projeto3', font,-8.5,-2);
   const img3 = planeImage3D('img/t3.png',-10,-2);
@@ -1032,7 +1043,18 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
       videoProjeto1.visible = true; 
 
       cssProjeto1.visible = true;
-  
+      wireProjetos1.visible = true;
+      controls.object.position.x = -11;
+      
+      // textMeshes.forEach((mesh) => {
+      //   mesh.visible = false;
+      // });
+      // secProjetos.forEach((mesh) => {
+      //   mesh.visible = false;
+      // });
+      // wireProjetos.forEach((mesh) => {
+      //   mesh.visible = false;
+      // });
 
       
       
@@ -1040,6 +1062,17 @@ if (intersectsProjeto1.length > 0 && intersectsSkull.length == 0) {
       // iframe.style.display = 'none';
       //iframe.src = '';
       cssProjeto1.visible = false;
+      wireProjetos1.visible = false;
+
+      // textMeshes.forEach((mesh) => {
+      //   mesh.visible = true;
+      // });
+      // secProjetos.forEach((mesh) => {
+      //   mesh.visible = true;
+      // });
+      // wireProjetos.forEach((mesh) => {
+      //   mesh.visible = true;
+      // });
 
     }
   //  if (intersectsRestart.length > 0) {
@@ -1115,6 +1148,15 @@ function renderLoop() {
     //   }
     // }
 
+    
+   
+    if(cssProjeto1){
+      if(controls.object.position.z < 5){
+        cssProjeto1.visible = false;
+        wireProjetos1.visible = false;
+      }
+      //cssProjeto1.position.set(controls.object.position.x-3.2,controls.object.position.y,controls.object.position.z+10);
+    }
     camera.position.x = THREE.MathUtils.clamp(camera.position.x, -20, 20);
     camera.position.y = THREE.MathUtils.clamp(camera.position.y, -20, 20);
     camera.position.z = THREE.MathUtils.clamp(camera.position.z, -20, 20);

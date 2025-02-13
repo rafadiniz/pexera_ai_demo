@@ -6,12 +6,18 @@
 	font-style: normal;
   }
 
-html, body {
+
+html, body{
     overflow: hidden;
     height: 100%;
     width: 100%;
     position: fixed;
 }
+
+/* html, body .video{
+    overflow: visible;
+    position: relative;
+} */
 
 html {
 	background: rgb(0, 0, 0);
@@ -88,12 +94,14 @@ span {
 }
 
 #joystick {
+	border: 1px solid rgba(255, 255, 255, 0.5);
 	position: absolute;
 	bottom: 20px;
 	left: 20px;
 	width: 100px;
 	height: 100px;
-	background: rgba(246, 244, 244, 0.6);
+	background: rgba(246, 244, 244, 0.0);
+	border-color: #ed0b0b;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
