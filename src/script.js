@@ -111,7 +111,7 @@ composer.addPass(filmPass);
 const shaderBleach = BleachBypassShader;
 const effectBleach = new ShaderPass( shaderBleach );
 effectBleach.uniforms[ 'opacity' ].value = 0.50;
-composer.addPass(effectBleach);
+//composer.addPass(effectBleach);
 
 
 //const effect1 = new DotScreenPass( new THREE.Vector2( 0, 0 ), 0.5, 10.8 );;
@@ -166,12 +166,10 @@ const grid1 = new THREE.GridHelper( 200, 20, 0x444444, 0x444444 );
 grid1.rotation.z = Math.PI * 0.5;
 //scene.add(grid1 );
 
-const gMaterial = new THREE.LineBasicMaterial({ color: 'rgb(239, 234, 234)', transparent: true, opacity: 0.2});
-
-const grid2 = new THREE.GridHelper( 200, 20, gMaterial);
+const grid2 = new THREE.GridHelper( 200, 20, 'rgb(0,0,0)','rgb(0,0,0)');
 scene.add( grid2 );
 
-const grid3 = new THREE.GridHelper( 400, 30, gMaterial );
+const grid3 = new THREE.GridHelper( 400, 30,'rgb(0,0,0)','rgb(0,0,0)');
 grid3.position.set(0,0,40)
 grid3.rotation.x = Math.PI * 0.5;
 scene.add(grid3);
@@ -328,7 +326,7 @@ loaderH.load(
 // and this is example code to get it to be on a plane
 const loaderImg = new THREE.TextureLoader().load('img/imagem de site.jpg');
 const geometryNE = new THREE.PlaneGeometry( 200, 120);
-const materialNE = new THREE.MeshBasicMaterial( { map: loaderImg, transparent: true, opacity: 0.2 });
+const materialNE = new THREE.MeshBasicMaterial( { map: loaderImg, transparent: true, opacity: 0.9 });
 const planeNE = new THREE.Mesh( geometryNE, materialNE);
 //clickableLinks.push(planeScreen);
 planeNE.visible = true;
@@ -631,9 +629,9 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(177, 173, 177)', 
+        color: 'rgb(18, 17, 18)', 
         depthTest: true, // Ensures wireframe is always visible
-        opacity: 0.2, // Adjust transparency
+        opacity: 0.3, // Adjust transparency
         transparent: true,
         });
       const line = new THREE.LineSegments(wireframe,lineMaterial);
@@ -671,9 +669,9 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(203, 199, 203)', 
+        color: 'rgb(14, 14, 14)', 
         depthTest: true, // Ensures wireframe is always visible
-        opacity: 0.2, // Adjust transparency
+        opacity: 0.3, // Adjust transparency
         transparent: true,
         });
       const line = new THREE.LineSegments(wireframe,lineMaterial);
@@ -715,9 +713,9 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(250, 241, 241)', 
+        color: 'rgb(20, 19, 19)', 
         depthTest: true, // Ensures wireframe is always visible
-        opacity: 0.2, // Adjust transparency
+        opacity: 0.5, // Adjust transparency
         transparent: true,
         });
       const line = new THREE.LineSegments(wireframe,lineMaterial);
