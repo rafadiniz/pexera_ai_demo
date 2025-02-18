@@ -91,7 +91,7 @@ scene.add(ambient);
 
 const sunLight = new THREE.PointLight('rgba(251, 248, 248, 0.95)', 3.8);
 sunLight.castShadow = true;
-sunLight.position.set(0,2,-5);
+sunLight.position.set(0,4,-2);
 scene.add(sunLight);
 
 // postprocessing
@@ -326,8 +326,8 @@ loaderH.load(
 
 
 // and this is example code to get it to be on a plane
-const loaderImg = new THREE.TextureLoader().load('img/sertao1.jpg');
-const geometryNE = new THREE.PlaneGeometry( 250, 120);
+const loaderImg = new THREE.TextureLoader().load('img/imagem de site.jpg');
+const geometryNE = new THREE.PlaneGeometry( 200, 120);
 const materialNE = new THREE.MeshBasicMaterial( { map: loaderImg, transparent: true, opacity: 0.2 });
 const planeNE = new THREE.Mesh( geometryNE, materialNE);
 //clickableLinks.push(planeScreen);
