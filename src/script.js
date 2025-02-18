@@ -110,7 +110,7 @@ const filmPass = new FilmPass(
 
 const shaderBleach = BleachBypassShader;
 const effectBleach = new ShaderPass( shaderBleach );
-effectBleach.uniforms[ 'opacity' ].value = 0.50;
+effectBleach.uniforms[ 'opacity' ].value = 0.0;
 composer.addPass(effectBleach);
 
 
