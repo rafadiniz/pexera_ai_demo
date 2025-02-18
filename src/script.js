@@ -106,7 +106,7 @@ const filmPass = new FilmPass(
   false // false to keep colors
 );
 
-composer.addPass(filmPass);
+//composer.addPass(filmPass);
 
 const shaderBleach = BleachBypassShader;
 const effectBleach = new ShaderPass( shaderBleach );
@@ -166,7 +166,7 @@ const grid1 = new THREE.GridHelper( 200, 20, 0x444444, 0x444444 );
 grid1.rotation.z = Math.PI * 0.5;
 //scene.add(grid1 );
 
-const grid2 = new THREE.GridHelper( 200, 20, 'rgb(0,0,0)','rgb(0,0,0)');
+const grid2 = new THREE.GridHelper( 120, 10, 'rgb(0,0,0)','rgb(0,0,0)');
 scene.add( grid2 );
 
 const grid3 = new THREE.GridHelper( 400, 30,'rgb(0,0,0)','rgb(0,0,0)');
