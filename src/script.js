@@ -111,7 +111,7 @@ const filmPass = new FilmPass(
 const shaderBleach = BleachBypassShader;
 const effectBleach = new ShaderPass( shaderBleach );
 effectBleach.uniforms[ 'opacity' ].value = 0.50;
-//composer.addPass(effectBleach);
+composer.addPass(effectBleach);
 
 
 //const effect1 = new DotScreenPass( new THREE.Vector2( 0, 0 ), 0.5, 10.8 );;
