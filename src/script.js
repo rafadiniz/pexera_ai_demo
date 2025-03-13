@@ -101,16 +101,16 @@ composer.addPass( new RenderPass( scene, camera ) );
 
 const filmPass = new FilmPass(
   2.85, // noise intensity
-  0.0,  // scanline intensity
-  0,  // scanline count
+  0.5,  // scanline intensity
+  4,  // scanline count
   false // false to keep colors
 );
 
-//composer.addPass(filmPass);
+composer.addPass(filmPass);
 
 const shaderBleach = BleachBypassShader;
 const effectBleach = new ShaderPass( shaderBleach );
-effectBleach.uniforms[ 'opacity' ].value = 0.0;
+effectBleach.uniforms[ 'opacity' ].value = 0.50;
 composer.addPass(effectBleach);
 
 
@@ -119,9 +119,9 @@ composer.addPass(effectBleach);
 //composer.addPass( effect1 );
 
 const effect2 = new ShaderPass( RGBShiftShader );
-effect2.uniforms[ 'amount' ].value = 0.0050;
+effect2.uniforms[ 'amount' ].value = 0.0070;
 effect2.uniforms[ 'angle' ].value = 90;
-//composer.addPass( effect2 );
+composer.addPass( effect2 );
 
 ///// MAKE EXPERIENCE FULL SCREEN
 window.addEventListener('resize', () => {
@@ -324,15 +324,15 @@ loaderH.load(
 
 
 // and this is example code to get it to be on a plane
-const loaderImg = new THREE.TextureLoader().load('img/imagem de site.jpg');
-const geometryNE = new THREE.PlaneGeometry( 200, 120);
-const materialNE = new THREE.MeshBasicMaterial( { map: loaderImg, transparent: true, opacity: 0.9 });
-const planeNE = new THREE.Mesh( geometryNE, materialNE);
-//clickableLinks.push(planeScreen);
-planeNE.visible = true;
-planeNE.position.set(-10, 4, 80);
-planeNE.rotateY(Math.PI * 0.9);
-scene.add(planeNE); 
+// const loaderImg = new THREE.TextureLoader().load('img/imagem de site.jpg');
+// const geometryNE = new THREE.PlaneGeometry( 200, 120);
+// const materialNE = new THREE.MeshBasicMaterial( { map: loaderImg, transparent: true, opacity: 0.9 });
+// const planeNE = new THREE.Mesh( geometryNE, materialNE);
+// //clickableLinks.push(planeScreen);
+// planeNE.visible = true;
+// planeNE.position.set(-10, 4, 80);
+// planeNE.rotateY(Math.PI * 0.9);
+// scene.add(planeNE); 
 
 const tvimg = document.createElement('img');
 tvimg.src = 'img/tv2.jpg'
@@ -481,6 +481,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
 
 });
 
+//parabolica
 let tvColor;
 const loaderG = new GLTFLoader().setPath( 'models/parabolica/' );
 loaderG.load( 'scene.gltf', async function ( gltf ) {
@@ -506,6 +507,54 @@ loaderG.load( 'scene.gltf', async function ( gltf ) {
 } );
 
 
+let quixada;
+const loaderQuixada = new GLTFLoader().setPath( 'models/quixada/' );
+loaderQuixada.load( 'scene.gltf', async function ( gltf ) {
+
+  const model = gltf.scene;
+  quixada = model;
+  quixada.scale.set(30,30,30);
+  quixada.position.set(-0.4,-27,80);
+  //arcade.rotation.y = Math.PI * 0.3;
+  //arcade.rotation.x = Math.PI * 0.5;
+
+  // model.traverse((child) => {
+  //   if (child.isMesh) {
+  //       console.log(child.name); // Log object names
+  //       child.material.color.set('rgb(250, 248, 248)'); // Change color to Red
+  //   }
+  //});
+
+  quixada.traverse(function (child) {
+    if (child.isMesh) {
+      const wireframe = new THREE.WireframeGeometry(child.geometry);
+      const lineMaterial = new THREE.LineBasicMaterial({
+    color: 'rgb(20, 19, 19)', 
+    depthTest: true, // Ensures wireframe is always visible
+    opacity: 0.5, // Adjust transparency
+    transparent: true,
+    });
+  const line = new THREE.LineSegments(wireframe,lineMaterial);
+  //chapadaLS = line;
+  //clickableChapada.push(line);
+  
+  wireframe.scale(0.5,0.5,0.5);
+  line.position.set(100,-150,250);
+  line.rotation.x = Math.PI * -0.5
+  //line.rotation.y = Math.PI * 0.5
+  //line.rotation.z = Math.PI * -0.2
+
+  scene.add(line);
+}
+});
+
+  //clickableArcade.push(quixada);
+  //scene.add(quixada);
+
+
+} );
+
+
   loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
       const textGeometry = new TextGeometry('GAME OVER', {
           font: font,
@@ -520,7 +569,7 @@ loaderG.load( 'scene.gltf', async function ( gltf ) {
       });
       // Create wireframe geometry
       const wireframeGeometry = new THREE.WireframeGeometry(textGeometry);
-      const wireframeMaterial = new THREE.LineBasicMaterial({ color: 'rgba(0,0,0,0.2)'});
+      const wireframeMaterial = new THREE.LineBasicMaterial({ color: 'rgba(0, 0, 0, 0.2)'});
       const wireframeMesh = new THREE.LineSegments(wireframeGeometry, wireframeMaterial);
         
       wireframeMesh.geometry.center();
@@ -554,7 +603,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
       bevelSegments: 1,
   });
  
-  const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(24, 21, 83)' }); // Red color
+  const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(28, 225, 14)' }); // Red color
   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
   textProjetos = textMesh;
   textProjetos.visible = false;
@@ -582,7 +631,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
     });
 
    
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(24, 21, 83)'}); // Red color
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(55, 204, 13)'}); // Red color
     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       
     textDiretores = textMesh;
@@ -608,7 +657,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         bevelSize: 0.02,
         bevelSegments: 1,
     });
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(24, 21, 83)' }); 
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(56, 231, 53)' }); 
     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
     textContato = textMesh;
     textContato.visible = false;
@@ -629,7 +678,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(18, 17, 18)', 
+        color: 'rgb(173, 26, 222)', 
         depthTest: true, // Ensures wireframe is always visible
         opacity: 0.3, // Adjust transparency
         transparent: true,
@@ -669,7 +718,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
         if (child.isMesh) {
           const wireframe = new THREE.WireframeGeometry(child.geometry);
           const lineMaterial = new THREE.LineBasicMaterial({
-        color: 'rgb(14, 14, 14)', 
+        color: 'rgb(210, 32, 189)', 
         depthTest: true, // Ensures wireframe is always visible
         opacity: 0.3, // Adjust transparency
         transparent: true,
@@ -728,7 +777,7 @@ loadFont.load('fonts/Jersey 15_Regular.json', (font) => {
       //line.rotation.y = Math.PI * 0.5
       line.rotation.z = Math.PI * -0.2
 
-      scene.add(line);
+      //scene.add(line);
 
         }
       });
