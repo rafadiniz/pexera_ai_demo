@@ -1,0 +1,11 @@
+Model Information:
+* title:	Serrote de Muxió (inselberg)
+* source:	https://sketchfab.com/3d-models/serrote-de-muxio-inselberg-abd3ed1b3c4a49bb8511acc8fdb3fa21
+* author:	Adriano Oliveira (https://sketchfab.com/adriano_ufc)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Serrote de Muxió (inselberg)" (https://sketchfab.com/3d-models/serrote-de-muxio-inselberg-abd3ed1b3c4a49bb8511acc8fdb3fa21) by Adriano Oliveira (https://sketchfab.com/adriano_ufc) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
